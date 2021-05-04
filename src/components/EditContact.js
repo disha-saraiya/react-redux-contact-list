@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {Form, Col, Button} from 'react-bootstrap';
 import {connect} from 'react-redux'; 
-import {addContact, updateContact} from '../actions'; 
-import {useDispatch, useSelector} from 'react-redux';
+import {updateContact} from '../actions'; 
 import { Redirect } from "react-router-dom";
 
 function EditContact(props){
@@ -10,15 +9,12 @@ function EditContact(props){
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({}); 
     const [redirectToHome, setRedirectToHome] = useState(false); 
-    const dispatch = useDispatch(); 
-
 
     const setField = (field, value) => {
         setForm({
             ...form, 
             [field]: value
         })
-        // Check and see if errors exist, and remove them from the error object:
         if ( !!errors[field] ) setErrors({
                 ...errors,
                 [field]: null
@@ -36,8 +32,6 @@ function EditContact(props){
                 "phone" : ((form.phone === undefined) ? "" : form.phone), 
                 "email" : ((form.email === undefined) ? "" : form.email)
             }
-
-            console.log(updatedContact); 
             props.updateContact(updatedContact); 
             setRedirectToHome(true);      
     }
@@ -96,7 +90,6 @@ function EditContact(props){
 }
 
 let mapStateToProps = function(state, props){
-    console.log(state); 
     return{
       contacts: state.contactList.contacts
     }
@@ -104,7 +97,6 @@ let mapStateToProps = function(state, props){
 
 let mapDispatchToProps = (dispatch, props) =>{
     return{
-        createContact: contact => dispatch(addContact(contact)), 
         updateContact: contact => dispatch(updateContact(contact))
     }
 }

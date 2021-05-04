@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Form, Button, Col} from 'react-bootstrap'; 
 import {connect} from 'react-redux'; 
-import {useDispatch, useSelector} from 'react-redux'; 
 import {addContact} from '../actions/'; 
 import { Redirect } from "react-router-dom";
 import Navigation from './Navigation';
@@ -9,22 +8,16 @@ import Navigation from './Navigation';
 
 
 function CreateContact(props){
-
-            const contacts = useSelector(state => state.contactList);
-            const dispatch = useDispatch(); 
-
             const [form, setForm] = useState({});
             const [errors, setErrors] = useState({}); 
             const [redirectToHome, setRedirectToHome] = useState(false); 
 
-            //Function to update state of the form
             // Email regex - https://ui.dev/validate-email-address-javascript/
             const setField = (field, value) => {
                 setForm({
                     ...form, 
                     [field]: value
                 })
-                // Check and see if errors exist, and remove them from the error object:
                 if ( !!errors[field] ) setErrors({
                         ...errors,
                         [field]: null
@@ -119,7 +112,6 @@ function CreateContact(props){
 }
 
 let mapStateToProps = function(state, props){
-    console.log(state); 
     return{
       contacts: state.contactList.contacts
     }

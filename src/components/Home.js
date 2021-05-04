@@ -1,24 +1,16 @@
 import React, {useState} from 'react';
 import { Redirect } from "react-router-dom";
-
 import {connect} from 'react-redux'; 
 import ContactCard from './ContactCard'; 
-import {useDispatch} from 'react-redux'; 
 import Button from 'react-bootstrap/Button'; 
-import {fetchList, addContact} from '../actions'; 
-import EditContact from './EditContact';
-
-
+import {addContact} from '../actions'; 
 
 function Home(props){
-    console.log(props.contacts); 
     const [showNewForm, setShowNewForm] = useState(false); 
     const [showEditForm, setShowEditForm] = useState(false); 
     const [showDeleteError, setShowDeleteError] = useState(false); 
     const [selectedContactToEdit, setSelectedContactToEdit] = useState({}); 
     const [selectedContactToDelete, setSelectedContactToDelete] = useState({}); 
-
-
 
     const toggleNewContactForm = e => {
       e.preventDefault(); 
@@ -75,7 +67,6 @@ function Home(props){
 }
 
 let mapStateToProps = function(state, props){
-  console.log(state); 
   return{
     contacts: state.contactList.contacts
   }
@@ -84,7 +75,6 @@ let mapStateToProps = function(state, props){
 let mapDispatchToProps = (dispatch, props) =>{
   return{
       createContact: contact => dispatch(addContact(contact)), 
-      fetchList: () => dispatch(fetchList())
   }
 }
 

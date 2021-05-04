@@ -19,9 +19,3 @@ export const deleteContact = (contactId) => {
     }
 }
 
-export const fetchList = (name, value) => {
-    return{
-        type: 'FETCH_LIST', 
-        payload: {[name] : value}
-    }
-}

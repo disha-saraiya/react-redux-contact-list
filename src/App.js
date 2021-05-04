@@ -13,7 +13,6 @@ import DeleteAlert from './components/DeleteAlert';
 function App() {
   return (
     <div className="App">
-      Hello this is my Visa assessment
       <Router>
       <Switch>
         <Route exact path = "/"><Home/></Route>
