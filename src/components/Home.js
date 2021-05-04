@@ -59,7 +59,7 @@ function Home(props){
        //The contact list is received from props, which comes from the redux state tree from mapStateToProps 
        //The edit and delete buttons are being sent the current contact 
         <div className = "home_container">
-        <Button className = "card_button" variant = "light" type = "submit" onClick = {e => toggleNewContactForm(e)}> Create a new contact</Button>
+        <h4 className = "heading"> My Contacts </h4>
           {props.contacts.map(contact => {
             return(
             <div key = {contact.id} className = "contact_card_container">
@@ -70,6 +70,7 @@ function Home(props){
             ); 
           })
         }
+        <Button className = "card_button" variant = "light" type = "submit" onClick = {e => toggleNewContactForm(e)}> Create a new contact</Button>
         </div>)
 }
 

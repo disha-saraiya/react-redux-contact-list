@@ -6,6 +6,11 @@
     align-items: center; 
 }
 
+.heading{
+    margin-top:20px; 
+    color: white; 
+}
+
 .contact_card_container{
     width: 40%; 
     margin: 1%; 

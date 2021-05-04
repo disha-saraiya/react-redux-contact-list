@@ -3,6 +3,7 @@ import {Form, Col, Button} from 'react-bootstrap';
 import {connect} from 'react-redux'; 
 import {updateContact} from '../actions'; 
 import { Redirect } from "react-router-dom";
+import './components.css'; 
 
 /* The EditContact form creates an existing contact, updates the contact list, and redirects to the home
    page to display the updated contact list. */ 
@@ -89,7 +90,7 @@ function EditContact(props){
             <Form.Control.Feedback type = "invalid" > {errors.phone} </Form.Control.Feedback>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick = {e => handleSubmit(e)}>
+            <Button className =  "card_button" variant="light" type="submit" onClick = {e => handleSubmit(e)}>
                 Edit contact information
             </Button>
             </div>
