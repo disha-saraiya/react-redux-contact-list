@@ -7,6 +7,7 @@ import {
 import CreateContact from './components/CreateContact';
 import EditContact from './components/EditContact';
 import Home from './components/Home';
+import DeleteAlert from './components/DeleteAlert';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       <Switch>
         <Route exact path = "/"><Home/></Route>
         <Route path = "/new"><CreateContact /></Route>
-        <Route path = "/edit"><EditContact /></Route>
+        <Route path = "/edit" render = {props => <EditContact {...props} />}></Route>
+        <Route path = "/delete" render = {props => <DeleteAlert {...props} />}></Route>
       </Switch>
       </Router>
     </div>

@@ -1,16 +1,20 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 
 
 function ContactCard(props){
     return(
+        <Accordion>
         <Card>
             <Card.Title> {props.contact.firstName} {props.contact.lastName} </Card.Title>
             <Card.Body> {props.contact.phone} </Card.Body>
-            <Card.Link href = "#"> View more information </Card.Link>
-            <Card.Link href = "/edit"> Edit </Card.Link>
-            <Card.Link href = "#"> Delete contact </Card.Link>
-        </Card>)
+            <Accordion.Toggle as = {Button} variant = "link" eventKey = "0"> View more information </Accordion.Toggle>
+            <Accordion.Collapse eventKey = "0"> 
+                <Card.Body> {props.contact.email} </Card.Body>
+            </Accordion.Collapse>
+        </Card>
+        </Accordion>
+        )
 }
 
 export default ContactCard; 

@@ -1,20 +1,72 @@
-import React from 'react';
-import contactList from '../contactList'; 
+import React, {useState} from 'react';
+import { Redirect } from "react-router-dom";
+
+import {connect} from 'react-redux'; 
 import ContactCard from './ContactCard'; 
+import {useDispatch} from 'react-redux'; 
 import Button from 'react-bootstrap/Button'; 
+import {fetchList, addContact} from '../actions'; 
+import EditContact from './EditContact';
 
 
 
-function Home(){
+function Home(props){
+    console.log(props.contacts); 
+    const [showNewForm, setShowNewForm] = useState(false); 
+    const [showEditForm, setShowEditForm] = useState(false); 
+    const [showDeleteError, setShowDeleteError] = useState(false); 
+    const [selectedContactToEdit, setSelectedContactToEdit] = useState({}); 
+    const [selectedContactToDelete, setSelectedContactToDelete] = useState({}); 
+
+
+
+    const toggleNewContactForm = e => {
+      e.preventDefault(); 
+      setShowNewForm(true); 
+    }
+
+    const toggleEditContactForm = (e, contact) => {
+      e.preventDefault(); 
+      setSelectedContactToEdit(contact);
+      console.log(selectedContactToEdit);  
+      setShowEditForm(true); 
+    }
+
+    const toggleDeleteContact = (e, contact) => {
+      e.preventDefault(); 
+      setSelectedContactToDelete(contact); 
+      setShowDeleteError(true); 
+    }
+
+
+    if(showNewForm){
+      return(
+        <Redirect to = "/new"></Redirect>
+      )
+    }
+
+    if(showEditForm){
+      return(
+        <Redirect to = {{pathname : "/edit", state: {contact: selectedContactToEdit}}}></Redirect>
+      )
+    }
+
+    if(showDeleteError) {
+      return(
+        <Redirect to = {{pathname : "/delete", state: {contact: selectedContactToDelete}}}></Redirect>
+      )
+    }
+
     return(
         <div>
-        
-        <Button type = "submit"><a href = "/new"> Create a new contact </a></Button>
+        <Button variant = "light" type = "submit" onClick = {e => toggleNewContactForm(e)}> Create a new contact</Button>
         {
-          contactList.map(contact => {
+          props.contacts.map(contact => {
             return(
             <div key = {contact.email}>
             <ContactCard contact = {contact} />
+            <Button onClick = {e => toggleEditContactForm(e, contact)}> Edit contact </Button>
+            <Button onClick = {e => toggleDeleteContact(e, contact)}> Delete contact </Button>
             </div>
             ); 
           })
@@ -22,4 +74,19 @@ function Home(){
         </div>)
 }
 
-export default Home; 
+let mapStateToProps = function(state, props){
+  console.log(state); 
+  return{
+    contacts: state.contactList.contacts
+  }
+}
+
+let mapDispatchToProps = (dispatch, props) =>{
+  return{
+      createContact: contact => dispatch(addContact(contact)), 
+      fetchList: () => dispatch(fetchList())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home); 
