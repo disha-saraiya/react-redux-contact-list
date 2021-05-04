@@ -74,8 +74,8 @@ function CreateContact(props){
 
     return(
     <div className = "home_container">
+    <h4 className = "heading"> Create a new contact </h4>
     <div className = "form_container">
-            <h4> Create a new contact </h4>
             <br /> 
             <Form.Row>
 

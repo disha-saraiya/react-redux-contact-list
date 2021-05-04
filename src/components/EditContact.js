@@ -53,8 +53,8 @@ function EditContact(props){
 
     return(
     <div className = "home_container">
+        <h4 className = "heading"> Update an existing contact </h4>
         <div className = "form_container">
-            <h4> Update an existing contact </h4>
             <br /> 
             <Form.Row>
 
