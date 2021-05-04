@@ -10,6 +10,10 @@ import Home from './components/Home';
 import DeleteAlert from './components/DeleteAlert';
 
 
+/* This is a single page application without backend persistance. It uses React Router to route to 
+   different components. The edit and delete components are given props on rendering, to recognize 
+   which contacts to perform operations on. */ 
+   
 function App() {
   return (
     <div className="App">

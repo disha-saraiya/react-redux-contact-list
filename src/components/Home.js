@@ -5,10 +5,17 @@ import ContactCard from './ContactCard';
 import Button from 'react-bootstrap/Button'; 
 import {addContact} from '../actions'; 
 
+/* The home page of the application. Since the requirement states no persistance to backend, it has been
+   created as a single page application, where each additional component (editing, deleting, or creating a contact)
+   has been redirected to using a trigger. This is to ensure that the changes in the redux state tree
+  reflect through all the components smoothly. */ 
+
 function Home(props){
+    //Various toggles to show different components without refreshing the state.
     const [showNewForm, setShowNewForm] = useState(false); 
     const [showEditForm, setShowEditForm] = useState(false); 
     const [showDeleteError, setShowDeleteError] = useState(false); 
+    //State to select which contact to edit and delete based on the contact currently mapped. 
     const [selectedContactToEdit, setSelectedContactToEdit] = useState({}); 
     const [selectedContactToDelete, setSelectedContactToDelete] = useState({}); 
 
@@ -20,7 +27,6 @@ function Home(props){
     const toggleEditContactForm = (e, contact) => {
       e.preventDefault(); 
       setSelectedContactToEdit(contact);
-      console.log(selectedContactToEdit);  
       setShowEditForm(true); 
     }
 
@@ -50,6 +56,8 @@ function Home(props){
     }
 
     return(
+       //The contact list is received from props, which comes from the redux state tree from mapStateToProps 
+       //The edit and delete buttons are being sent the current contact 
         <div>
         <Button variant = "light" type = "submit" onClick = {e => toggleNewContactForm(e)}> Create a new contact</Button>
         {
@@ -66,17 +74,11 @@ function Home(props){
         </div>)
 }
 
+// This component uses mapStateToProps to update the contact list dynamically.
 let mapStateToProps = function(state, props){
   return{
-    contacts: state.contactList.contacts
+    contacts: state.contacts
   }
 }
 
-let mapDispatchToProps = (dispatch, props) =>{
-  return{
-      createContact: contact => dispatch(addContact(contact)), 
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home); 
+export default connect(mapStateToProps, null)(Home); 

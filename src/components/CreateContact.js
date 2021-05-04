@@ -3,16 +3,19 @@ import {Form, Button, Col} from 'react-bootstrap';
 import {connect} from 'react-redux'; 
 import {addContact} from '../actions/'; 
 import { Redirect } from "react-router-dom";
-import Navigation from './Navigation';
 
-
+/* The CreateContact form creates a new contact, updates the existing contact list, and redirects to the home
+   page to display the updated contact list. */ 
 
 function CreateContact(props){
+            //The form with filled up values to create a new contact
             const [form, setForm] = useState({});
+            //For error handling 
             const [errors, setErrors] = useState({}); 
+            //To toggle redirecting to home after the contact has been created successfully. 
             const [redirectToHome, setRedirectToHome] = useState(false); 
 
-            // Email regex - https://ui.dev/validate-email-address-javascript/
+            //This function sets the fields in the Form component such as first name and last name to the corresponding fields in the form to submit. 
             const setField = (field, value) => {
                 setForm({
                     ...form, 
@@ -25,9 +28,11 @@ function CreateContact(props){
         
             }
         
+            //Will find the errors in the form and invalidate any inputs that are erroneous, so that the form can only be submitted once all the information is correct. 
             const findFormErrors = () => {
                     const {first, email, phone} = form
                     const newErrors = {} 
+                    // Email regex reference - https://ui.dev/validate-email-address-javascript/
                     const re = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/); 
 
                     if((re.test(email)) === false ) newErrors.email = "Please enter a valid email address."
@@ -38,6 +43,10 @@ function CreateContact(props){
                     return newErrors
             }
             
+            /* Checks the input error form for any errors and invalidates till correct. 
+            Once correct, the new contact is set, and action for creating a new contact is dispatched.
+            Once the new contact has been created the app is redirected to the home page to display the updated
+            list of contacts. */
             const handleSubmit = (e) => {
                 e.preventDefault(); 
 
@@ -65,7 +74,6 @@ function CreateContact(props){
 
     return(
     <div>
-    <Navigation />
     <div className = "form_container">
 
             <Form.Row>
@@ -111,9 +119,11 @@ function CreateContact(props){
     )
 }
 
+// This component uses mapStateToProps and mapDispatchToProps to update the contact list dynamically.
+
 let mapStateToProps = function(state, props){
     return{
-      contacts: state.contactList.contacts
+      contacts: state.contacts
     }
   }
 

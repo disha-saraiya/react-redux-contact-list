@@ -4,10 +4,17 @@ import {connect} from 'react-redux';
 import {deleteContact} from '../actions'; 
 import { Redirect } from "react-router-dom";
 
-function DeleteAlert(props){
+/* The DeleteAlert is an alert that prompts the user to delete a contact and deletes the contact 
+   if the user agrees, updates the existing contact list, and redirects to the home
+   page to display the updated contact list. */ 
 
+function DeleteAlert(props){
+    //To toggle redirecting to home after the contact has been deleted successfully. 
     const[redirectToHome, setRedirectToHome] = useState(false); 
 
+    /* Dispatches the action to delete a contact, using the contactID that has been passed on via props
+       while rendering the component. Once the contact has been successfully deleted, application is
+       redirected to the home page. */
     const handleDelete = e => {
         e.preventDefault(); 
         props.deleteContact(props.location.state.contact.id); 
@@ -32,9 +39,10 @@ function DeleteAlert(props){
           )
 }
 
+// This component uses mapStateToProps and mapDispatchToProps to update the contact list dynamically.
 let mapStateToProps = function(state, props){
     return{
-      contacts: state.contactList.contacts
+      contacts: state.contacts
     }
   }
 
