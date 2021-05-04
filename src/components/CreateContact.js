@@ -73,9 +73,10 @@ function CreateContact(props){
             }
 
     return(
-    <div>
+    <div className = "home_container">
     <div className = "form_container">
-
+            <h4> Create a new contact </h4>
+            <br /> 
             <Form.Row>
 
             <Col>
@@ -111,7 +112,7 @@ function CreateContact(props){
             <Form.Control.Feedback type = "invalid" > {errors.phone} </Form.Control.Feedback>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick = {e => handleSubmit(e)}>
+            <Button variant="light" type="submit" onClick = {e => handleSubmit(e)}>
                 Create contact
             </Button>
     </div>

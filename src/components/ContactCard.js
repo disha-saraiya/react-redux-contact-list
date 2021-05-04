@@ -11,11 +11,12 @@ function ContactCard(props){
     return(
         <Accordion>
         <Card>
-            <Card.Title> {props.contact.firstName} {props.contact.lastName} </Card.Title>
-            <Card.Body> {props.contact.phone} </Card.Body>
-            <Accordion.Toggle as = {Button} variant = "link" eventKey = "0"> View more information </Accordion.Toggle>
+            <Card.Title className = "card_title"> {props.contact.firstName} {props.contact.lastName} </Card.Title>
+            <hr />
+            <Card.Body> Contact: {props.contact.phone} </Card.Body>
+            <Accordion.Toggle as = {Button} className = "card_button" variant = "link" eventKey = "0"> View more information </Accordion.Toggle>
             <Accordion.Collapse eventKey = "0"> 
-                <Card.Body> {props.contact.email} </Card.Body>
+                <Card.Body> Email ID: {props.contact.email} </Card.Body>
             </Accordion.Collapse>
         </Card>
         </Accordion>

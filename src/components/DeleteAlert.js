@@ -3,6 +3,7 @@ import {Alert, Button} from 'react-bootstrap';
 import {connect} from 'react-redux'; 
 import {deleteContact} from '../actions'; 
 import { Redirect } from "react-router-dom";
+import './components.css'; 
 
 /* The DeleteAlert is an alert that prompts the user to delete a contact and deletes the contact 
    if the user agrees, updates the existing contact list, and redirects to the home
@@ -27,8 +28,10 @@ function DeleteAlert(props){
         )
     }
     return (
+          <div className = "home_container">
+          <div className = "delete_alert">
           <Alert variant="danger">
-            <Alert.Heading>Are you sure you want to delete {props.location.state.contact.firstName}?</Alert.Heading>
+            <Alert.Heading> Are you sure you want to delete {props.location.state.contact.firstName}?</Alert.Heading>
             <hr />
             <div className="justify-content-center">
               <Button variant="outline-danger" onClick = {e => handleDelete(e)}>
@@ -36,6 +39,8 @@ function DeleteAlert(props){
               </Button>
             </div>
           </Alert>
+          </div>
+          </div>
           )
 }
 

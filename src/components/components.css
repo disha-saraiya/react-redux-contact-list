@@ -1,0 +1,41 @@
+/* Home page and contact card styles */ 
+
+.home_container{
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+}
+
+.contact_card_container{
+    width: 40%; 
+    margin: 1%; 
+    background-color: gold;
+}
+
+.card_button{
+    margin: 0.8%;  
+}
+
+.card_button :hover{
+    box-shadow: 2px 2px 2px rgb(71, 71, 69);
+}
+
+.card_title{
+    margin-top: 10px; 
+}
+
+/* Input form styles for creating and updating a contact */ 
+
+.form_container{
+    width: 50%; 
+    background-color: rgba(255, 255, 0, 0.685);
+    margin-top: 5%; 
+    border-radius: 2%; 
+    align-items: center; 
+    padding: 2%; 
+}
+
+/* Delete alert styles */
+.delete_alert{
+    width: 50%; 
+}
