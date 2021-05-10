@@ -21,7 +21,8 @@ function CreateContact(props){
                     ...form, 
                     [field]: value
                 })
-                if ( !!errors[field] ) setErrors({
+                if (!!errors[field]) 
+                setErrors({
                         ...errors,
                         [field]: null
                 })
@@ -35,7 +36,7 @@ function CreateContact(props){
                     // Email regex reference - https://ui.dev/validate-email-address-javascript/
                     const re = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/); 
 
-                    if((re.test(email)) === false ) newErrors.email = "Please enter a valid email address."
+                    if((re.test(email)) === false) newErrors.email = "Please enter a valid email address."
 
                     if(!first || first === '') newErrors.first = "Please input a first name for your contact."                    
 
@@ -78,7 +79,6 @@ function CreateContact(props){
     <div className = "form_container">
             <br /> 
             <Form.Row>
-
             <Col>
             <Form.Group >
             <Form.Label>First Name</Form.Label>
@@ -95,7 +95,6 @@ function CreateContact(props){
             onChange = {e => setField('last', e.target.value)} />
             </Form.Group>
             </Col>
-
             </Form.Row>
 
             <Form.Group>

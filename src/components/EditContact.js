@@ -9,9 +9,7 @@ import './components.css';
    page to display the updated contact list. */ 
 
 function EditContact(props){
-
     const [form, setForm] = useState({});
-    const [errors, setErrors] = useState({}); 
     const [redirectToHome, setRedirectToHome] = useState(false); 
 
     //This function sets the fields in the Form component such as first name and last name to the corresponding fields in the form to submit. 
@@ -20,11 +18,6 @@ function EditContact(props){
             ...form, 
             [field]: value
         })
-        if ( !!errors[field] ) setErrors({
-                ...errors,
-                [field]: null
-        })
-
     }
 
     /* Creates an updatedContact object using the ID passed down via props while rendering the component. The rest of the 
@@ -79,15 +72,13 @@ function EditContact(props){
             <Form.Group>
             <Form.Label>Edit Email</Form.Label>
             <Form.Control type="email" placeholder={props.location.state.contact.email} 
-            onChange = {e => setField('email', e.target.value)} isInvalid = {!!errors.email} />
-            <Form.Control.Feedback type = "invalid" > {errors.email} </Form.Control.Feedback>
+            onChange = {e => setField('email', e.target.value)}/>
             </Form.Group>
 
             <Form.Group>
             <Form.Label>Edit Phone number</Form.Label>
             <Form.Control type="text" placeholder={props.location.state.contact.phone}
-            onChange = {e => setField('phone', e.target.value)} isInvalid = {!!errors.phone}/>
-            <Form.Control.Feedback type = "invalid" > {errors.phone} </Form.Control.Feedback>
+            onChange = {e => setField('phone', e.target.value)}/>
             </Form.Group>
 
             <Button className =  "card_button" variant="light" type="submit" onClick = {e => handleSubmit(e)}>
